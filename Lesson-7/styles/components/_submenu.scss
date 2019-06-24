@@ -1,0 +1,40 @@
+
+.submenu{
+    width: 170px;
+    min-width: 170px;
+    flex-shrink: 1;
+    height: 100%;
+    padding-top: 20px;
+
+    li{
+        border-left: 5px solid white;
+        padding: 9px 28px 9px 23px;
+        list-style-type: none;
+
+        a{
+            text-decoration: none;
+
+            font: 14px Arial;
+            color: #99a1b3;
+        }
+    }
+
+    .submenu-links:hover{
+        border-left: 5px solid #99a1b3;
+
+        a{
+            color: black;
+        }
+    }
+}
+
+.submenu-headline{
+    font: 18px Georgia;
+    margin-top: 32px;
+}
+
+@media (max-width: 640px){
+    .submenu{
+        display: none;
+    }
+}

@@ -1,0 +1,229 @@
+
+.header-conteiner{
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+
+//HEADER-TOP
+
+.header-top{
+    background-color: #2d313d;
+    height: 59px;
+    display: flex;
+    align-items: center;
+}
+
+.header-top__conteiner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-top__logo{
+    margin-left: 10px;
+    img{
+        width: 32px;
+        height: 20px;
+    }
+}
+
+.header-top__right{
+    display: flex;
+    align-items: center;
+    color: #727989;
+    font: 14px Arial;
+}
+
+.city-top{
+    margin-right: 28px;
+}
+
+.bell{
+    margin-right: 28px;
+    font-size: 20px;
+}
+
+.envelope{
+    margin-right: 28px;
+    font-size: 20px;
+}
+
+.account{
+    margin-right: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.account-name{
+    margin-right: 10px;
+}
+
+.search-top{
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.header-top__mobile{
+    display: none;
+}
+
+
+
+
+
+//HEADER-BOTTOM
+
+.header-bottom{
+    background-color: #646d81;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.nav{
+    font: 14px Arial;
+
+    a{
+        text-decoration: none;
+        color: white;
+        border-top: solid #646d81 5px;
+        padding: 7px 0 12px;
+        margin-right: 28px;
+    }
+
+    a:hover{
+        border-top: solid white 5px;
+    }
+}
+
+
+
+// Mobile-menu
+
+.menu{
+    display: none;
+}
+
+.burger-menu{
+    display: block;
+    width: 134px;
+    height: 202px;
+    background-color: #2d313d;
+    border: 2px solid black;
+    position: absolute;
+    color: white;
+    z-index: 50;
+    left: 20px;
+    top: 52px;
+
+    li{
+        list-style-type: none;
+        text-align: center;
+        margin-bottom: 9px;
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
+        font-size: 25px;
+    }
+
+    a:hover{
+        color: gray;
+    }
+}
+
+
+
+// MEDIA
+
+@media (max-width: 640px){
+    .header-top__right{
+        display: none;
+    }
+    .header-top__logo{
+        display: none;
+    }
+    .header-bottom{
+        display: none;
+    }
+
+
+
+    .header-top{
+        height: 84px;
+    }
+    .header-top__mobile{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        width: 100%;
+    }
+
+    .mobile-right{
+        display: flex;
+        align-items: center;
+        min-width: 70%;
+    }
+
+    .logo-white{
+        width: 60px;
+        height: 38px;
+        margin-right: 10%;
+    }
+
+    .title{
+        font: 20px Arial;
+        min-width: 100px;
+    }
+
+    .search-mobile{
+        font-size: 20px;
+        margin-left: 7%;
+    }
+
+
+
+    .mobile-menu{
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .burger{
+        width: 20px;
+        height: 4px;
+        background-color: white;
+        border-radius: 5px;
+        position: relative;
+        z-index: 99;
+    }
+
+    .burger::before{
+        content: '';
+        position: absolute;
+        top: -8px;
+        width: 20px;
+        height: 4px;
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    .burger::after{
+        content: '';
+        position: absolute;
+        top: 8px;
+        width: 20px;
+        height: 4px;
+        background-color: white;
+        border-radius: 5px;
+    }
+}
+
+
