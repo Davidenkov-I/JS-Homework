@@ -1,12 +1,12 @@
 // ЗАДАНИЕ 4/5
 
 function Animal(name) {
-    this._foodAmount = 50;
+    foodAmount = 50;
 
 	var self = this;
 
     function formatFoodAmount() {
-        return self._foodAmount + 'гр.';
+        return foodAmount + 'гр.';
     }
 
     this.dailyNorm = function(amount) {
@@ -16,7 +16,7 @@ function Animal(name) {
             return 'Недопустимое количество корма.';
         }
 
-        self._foodAmount = amount;
+        foodAmount = amount;
     };
 
     this.name = name;
@@ -31,7 +31,8 @@ function Cat(name) {
 
 	var animalFeed = this.feed;
 	this.feed = function () {
-		animalFeed() + console.log('Котик доволен ^_^');
+        animalFeed();
+        console.log('Котик доволен ^_^');
 		return this;
     }
 
