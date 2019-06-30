@@ -28,8 +28,8 @@ console.log(initialObj);
 console.log(clonedObj);
 
 function deepClone(obj) {
-	var newObj = {};
-	var newArray = [];
+    var newObj = {};
+    var newArray = [];
 
     for (var key in obj) {
         if(typeof(obj[key]) === 'string' || typeof(obj[key]) === 'number' || typeof(obj[key]) === 'boolean' || 
@@ -37,10 +37,10 @@ function deepClone(obj) {
             newObj[key] = obj[key];
         }
         else if(Array.isArray(obj[key])){
-		    for(var i = 0; i < obj[key].length; i++){
-			    if(typeof(obj[key][i]) === 'string' || typeof(obj[key][i]) === 'number' || typeof(obj[key][i]) === 'boolean' || 
+            for(var i = 0; i < obj[key].length; i++){
+                if(typeof(obj[key][i]) === 'string' || typeof(obj[key][i]) === 'number' || typeof(obj[key][i]) === 'boolean' || 
                 typeof(obj[key][i]) === 'undefined' || typeof(obj[key][i]) === 'function'){
-				    newArray[newArray.length] = obj[key][i];
+                    newArray[newArray.length] = obj[key][i];
                 }
                 else{
                     newArray[newArray.length] = deepClone(obj[key][i]);
