@@ -25,7 +25,6 @@ Animal.prototype.feed = function() {
 
 function Cat(name) {
     Animal.apply(this, arguments);
-    this._name = name;
 }
 
 Cat.prototype = Object.create(Animal.prototype);
@@ -34,12 +33,12 @@ Cat.prototype.constructor = Cat;
 Cat.prototype.feed = function() {
     Animal.prototype.feed.apply(this, arguments);
     console.log('Кот доволен ^_^');
-    //return this;
+    return this;
 };
 
 Cat.prototype.stroke = function() {
     console.log('Гладим кота.');
-    //return this;
+    return this;
 };
 
 
@@ -49,6 +48,6 @@ var barsik = new Cat('Барсик');
 barsik.stroke();
 barsik.dailyNorm(500);
 barsik.feed();
-//console.log(barsik.feed().stroke().stroke().feed());
+console.log(barsik.feed().stroke().stroke().feed());
 
 //barsik = null;
