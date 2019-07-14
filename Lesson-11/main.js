@@ -24,29 +24,10 @@ console.log(foundArr);
 
 // ЗАДАЧА 3
 
-function isPalindrome(str1){
+function isPalindrome(str){
 
-    var str = str1;
+	return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
 
-    str = str.toLowerCase();
-
-    var arrayStr = str.split('');
-    var arrayStrReverse = str.split('');
-
-    arrayStrReverse.reverse();
-
-    var bool;
-
-    // тут мог быть метод every
-    for(var i = 0; i < arrayStr.length; i++){
-        if (arrayStr[i] !== arrayStrReverse[i]){
-            bool = false;
-            break;
-        }
-        bool = true;
-    }
-
-    return bool;
 }
 
 console.log(isPalindrome('Слово'));
@@ -57,29 +38,8 @@ console.log(isPalindrome('шалаШ'));
 
 function areAnagrams (str1, str2){
 
-    if (str1.length !== str2.length){
-        return false;
-    }
-
-    str1 = str1.toLowerCase();
-    str2 = str2.toLowerCase();
-
-    var bool;
-
-    for (var i = 0; i < str1.length; i++){
-		
-        if (str2.indexOf(str1[i]) === -1){
-			
-            bool = false;
-            break;
-        }
-
-        bool = true;
-        str2.replace(str1[i], '');		
-    }
-
-    return bool;
-
+	return (str1.toLowerCase().split('').sort().join('') === str2.toLowerCase().split('').sort().join(''));
+            
 }
 
 console.log(areAnagrams('кот', 'отк'));
