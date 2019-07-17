@@ -23,7 +23,7 @@ var array = ['00', '13', '24'];
 function timeOfArray (arr) {
 
     return arr.reduce(function(a , b){
-		    return a + ' : ' + b;
+        return a + ' : ' + b;
     }, 'Текущее время');
 
 }
