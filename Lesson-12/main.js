@@ -3,13 +3,11 @@
 var array = ['Вася', 'Петя', 'Валера'];
 
 function namesArray (arr) {
-    var newArray = [];
 
-    for (var i = 0; i < arr.length; i++) {
-        newArray[i] = {name: array[i]};
-    }
+    return arr.map(function(element){
+        return {name: element};
+    });
 
-    return newArray;
 }
 
 console.log(namesArray(array));
