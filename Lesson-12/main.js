@@ -6,7 +6,7 @@ function namesArray (arr) {
     var newArray = [];
 
     for (var i = 0; i < arr.length; i++) {
-		newArray[i] = {name: array[i]};
+        newArray[i] = {name: array[i]};
     }
 
     return newArray;
@@ -23,7 +23,7 @@ var array = ['00', '13', '24'];
 function timeOfArray (arr) {
 
     return arr.reduce(function(a , b){
-		return a + ' : ' + b;
+		    return a + ' : ' + b;
     }, 'Текущее время');
 
 }
@@ -40,16 +40,16 @@ function quantityVowel (str){
 
     var sumVowel = 0;
 
-	// функция для определения гласных
+    // функция для определения гласных
     function isVowel( chr ){ 
-		return 'аеёиоуыэюя'.indexOf( chr.toLowerCase() ) !== -1;
+        return 'аеёиоуыэюя'.indexOf( chr.toLowerCase() ) !== -1;
     }
 
-	// счетчик гласных. Через старый добрый фор, зачем что-то усложнять, если не намного короче получится.
+    // счетчик гласных. Через старый добрый фор, зачем что-то усложнять, если не намного короче получится.
     for (var i = 0; i < str.length; i++){
-		if ( isVowel(str[i]) ){
-			sumVowel++;
-		}
+        if ( isVowel(str[i]) ){
+            sumVowel++;
+        }
     }
 
     return sumVowel;
@@ -70,20 +70,20 @@ function textDivider (str){
     str = str.split(/[.!?]/);
 
     function isSymbol( chr ){ 
-		return ' ,:'.indexOf( chr ) === -1;
+        return ' ,:'.indexOf( chr ) === -1;
     }
 	
     for (var i = 0; i < str.length-1; i++) {
 
-		var sumSymbol = 0;
+        var sumSymbol = 0;
 
-		for (var x = 0; x < str[i].length; x++){
-			if ( isSymbol(str[i][x]) ){
-				sumSymbol++;
-			}
-		}
+        for (var x = 0; x < str[i].length; x++){
+            if ( isSymbol(str[i][x]) ){
+                sumSymbol++;
+            }
+        }
 
-		newStr += (str[i] + ' (Букв в предложении: ' + sumSymbol + ')\n');
+        newStr += (str[i] + ' (Букв в предложении: ' + sumSymbol + ')\n');
 
     }
 
