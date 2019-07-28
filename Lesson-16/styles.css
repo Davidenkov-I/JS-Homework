@@ -1,6 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: darkgray;
+}
 
 .button_load{
     margin-left: 25px;
     margin-top: 25px;
     margin-bottom: 50px;
+}
+
+
+.button_user{
+    margin-left: 10px;
+    background-color: greenyellow;
+    outline: none;
+    border: none;
+}
+
+.user_page{
+    background-color: white;
+    display: flex;
+}
+
+.user_img-conteiner{
+    padding: 20px;
+    height: 170px;
+    width: 170px;
+}
+
+.avatar{
+    width: 130px;
+    height: 130px;
+}
+
+.user_name-conteiner{
+    width: 100%;
+}
+
+.button_user:focus{
+    background-color: white;
+}
+
+.connect-error{
+    margin-left: 30px;
+    color:  red;
 }

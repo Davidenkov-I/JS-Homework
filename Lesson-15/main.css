@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+table{
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+td{
+    min-width: 200px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+}
