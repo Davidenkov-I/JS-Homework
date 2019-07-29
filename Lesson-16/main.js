@@ -31,11 +31,27 @@ button.onclick = function(){
         if(!localStorage.getItem('dataUsers')){
             var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', 'https://reqres.in/api/users?page=4', true);
+            xhr.open('GET', 'https://reqres.in/api/users?page=2', true);
             //xhr.open('GET', 'https://reqres', true);
     
             xhr.onload = function() {
-            
+          
+                if(xhr.responseURL !== 'https://reqres.in/api/users?page=2'){
+                    if(!pageConnectErrorOn){
+                        body.appendChild(document.createElement('p'));
+
+                        var errorConnectText = document.getElementsByTagName('p')[0];
+                        errorConnectText.innerHTML = 'Получены данные не с того сервера!!!';
+                        errorConnectText.classList.add('connect-error');
+
+                        //прекращаем повторное создание сообщения об ошибке
+                        pageConnectErrorOn = true;
+                        pageUserOn = true;
+
+                        breack;
+                    }
+                }
+
                 localStorage.setItem("dataUsers", xhr.response); //записываем в localStorage
     
                 //если страница не отрисована, отрисовать ее
