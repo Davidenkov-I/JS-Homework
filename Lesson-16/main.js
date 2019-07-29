@@ -17,6 +17,8 @@ button.onclick = function(){
         var firstNameText;
         var lastNameText;
 
+        var eventButton;
+
         //создаем div в body после основной кнопки
         var body = document.getElementsByTagName('body')[0];
         body.appendChild(document.createElement('div'));
@@ -29,7 +31,7 @@ button.onclick = function(){
         if(!localStorage.getItem('dataUsers')){
             var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', 'https://reqres.in/api/users?page=2', true);
+            xhr.open('GET', 'https://reqres.in/api/users?page=4', true);
             //xhr.open('GET', 'https://reqres', true);
     
             xhr.onload = function() {
@@ -52,7 +54,7 @@ button.onclick = function(){
                 //если нет соединения выводим сообщение об ошибке пользователю
                 if(this.status !== 200){
                     if(!pageConnectErrorOn){
-                        usersPageConteiner.appendChild(document.createElement('p'));
+                        body.appendChild(document.createElement('p'));
 
                         var errorConnectText = document.getElementsByTagName('p')[0];
                         errorConnectText.innerHTML = 'Нет соединения с сервером!!!';
@@ -91,6 +93,11 @@ button.onclick = function(){
             avatar.src = dataArray[buttonDataValue].avatar; //изменяем ссылку на аватарку
             firstNameText.textContent = ' ' + dataArray[buttonDataValue].first_name; //изменяем первое имя
             lastNameText.textContent = ' ' + dataArray[buttonDataValue].last_name; // изменяем второе имя
+
+            //убераем фокус со старой кнопки, и ставим на выбранную
+            eventButton.classList.remove('button_user-focus'); //удаляем клас отвечающий за подсветку
+            a.classList.add('button_user-focus');
+            eventButton = a;
 
         }
     
@@ -158,6 +165,11 @@ button.onclick = function(){
                 //запись в глобальные переменные
                 firstNameText = usersPageConteiner.getElementsByTagName('span')[0];
                 lastNameText = usersPageConteiner.getElementsByTagName('span')[1];
+
+                //записываем первую кнопку в переменную для сфокусированных кнопок
+                eventButton = usersPageConteiner.getElementsByTagName('button')[0];
+                eventButton.classList.add('button_user-focus');
+
             }
         }
     } 
