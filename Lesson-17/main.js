@@ -33,11 +33,18 @@ var timeData = []; // переменная для хранения времен�
 
 var stopWotchToggle = false; // отвечает за работу счетчика секундомера
 var timer; //переменная для запуска setInterval
-var iter = 20; // настраиваемая переменная отвещающая за то каким будет интервал
+var iter = 10; // настраиваемая переменная отвещающая за то каким будет интервал
 
 //если есть в localstorage то загрузить данные и записать их в нужные переменные
 if(localStorage.getItem('time')){
     timeData = JSON.parse(localStorage.getItem('time'));
+
+    console.log(timeData[0]);
+    console.log(timeData[1]);
+    console.log(timeData[2]);
+    console.log(timeData[3]);
+    console.log(timeData[4]);
+    console.log(timeData[5]);
 
     minutesDecadeValue = timeData[0];
     minutesValue = timeData[1];
@@ -110,7 +117,7 @@ function iterationStopwotch(){
             miliSecondDecadeValue -= 10;
             secondsValue += 1;
 
-            //localStorage.setItem("time", JSON.stringify(timeData));
+            setTimeout(writeLocalstorage, 10);
 
             if(secondsValue >= 10){
                 secondsValue -= 10;
