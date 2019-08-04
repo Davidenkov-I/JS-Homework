@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+.stopwotch{
+    max-width: 500px;
+    width: 100%;
+    margin: 30px auto 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time_conteiner{
+    display: flex;
+    justify-content: center;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.time_box{
+    width: 50px;
+    height: 30px;
+
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(221, 218, 218);
+    text-align: center;
+}
+
+.time_box:nth-child(1n + 2){
+    margin-left: 20px;
+}
+
+.time_value{
+    font-weight: bold;
+    font-size: 23px;
+}
+
+button{
+    width: 70px;
+    border: 1px solid black;
+    background-color: rgb(221, 218, 218);
+    border-radius: 5px;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
