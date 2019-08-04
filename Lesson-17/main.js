@@ -131,7 +131,7 @@ function iterationStopwotch(){
                             setTimeout(stopwotchZero, iter+5);
 
                             buttonSave.remove(); //удаляем кнопку save
-                            buttonStart.remove(); // удаляем основную кнопку
+                            buttonStart.style.display = 'none'; // скрываем основную кнопку
                         }
 
                         minutesDecade.innerHTML = minutesDecadeValue;
@@ -240,24 +240,11 @@ function funButtonReset(){
 //введена для вызова ее через интервал после нажатия на кнопку reset, из-за временной задерки между нажатием на кнопку и отключением счетчика
 function timeoutMilisecondReset(){
 
-    if(buttonStart){
-        //сбрасываем стартовую кнопку
-        buttonStart.setAttribute('data-value', 'start'); //изменяем значение дата атрибута на run
-        buttonStart.innerHTML = 'Start'; // меняем текст кнопки
-    }
-    /*
-    else{
-        console.log('создание кнопки старт');
+    //сбрасываем стартовую кнопку
+    buttonStart.setAttribute('data-value', 'start'); //изменяем значение дата атрибута на run
+    buttonStart.innerHTML = 'Start'; // меняем текст кнопки
 
-        stopwotch.insertBefore(document.createElement('button'), timeConteiner); //создаем кнопку старта
-        var buttonStart = document.getElementsByTagName('button')[0]; // находим кнопку старта
-        buttonStart.setAttribute('data-value', 'start'); // добавляем ей дата атрибут со значением start
-        buttonStart.innerHTML = 'Start';
-
-        buttonStart.onclick = buttonStartClick;
-    }
-    */
-
+    buttonStart.style.display = 'block';
 
     //обнуляем переменные отвещающие за значения времени
     minutesDecadeValue = 0;
