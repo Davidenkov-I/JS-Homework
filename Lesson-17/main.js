@@ -33,9 +33,9 @@ var timeData = []; // переменная для хранения времен�
 
 var stopWotchToggle = false; // отвечает за работу счетчика секундомера
 var timer; //переменная для запуска setInterval
-var iter = 10; // настраиваемая переменная отвещающая за то каким будет интервал
+var iter = 20; // настраиваемая переменная отвещающая за то каким будет интервал
 
-
+//если есть в localstorage то загрузить данные и записать их в нужные переменные
 if(localStorage.getItem('time')){
     timeData = JSON.parse(localStorage.getItem('time'));
 
@@ -63,6 +63,9 @@ if(localStorage.getItem('state')){
 
         buttonReset.onclick = funButtonReset;
         buttonSave.onclick = funButtonSave;
+
+        stopWotchToggle = true;
+        timer = setInterval(iterationStopwotch, iter);
     }
 
     if(JSON.parse(localStorage.getItem('state')) === 'run'){
@@ -103,12 +106,11 @@ function iterationStopwotch(){
         miliSecondValue -= 100;
         miliSecondDecadeValue += 1;
 
-        //если поставить чаще, то программа не успевает все обрабатывать и начинает отставать по времени
-        localStorage.setItem("time", JSON.stringify(timeData));
-
         if(miliSecondDecadeValue >= 10){
             miliSecondDecadeValue -= 10;
             secondsValue += 1;
+
+            //localStorage.setItem("time", JSON.stringify(timeData));
 
             if(secondsValue >= 10){
                 secondsValue -= 10;
