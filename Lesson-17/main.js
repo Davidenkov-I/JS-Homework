@@ -1,7 +1,7 @@
 
 var buttonStart = document.getElementsByTagName('button')[0]; // находим кнопку старта
 
-//находим все 3 тега span отвечающих за значения времени
+//находим все 6 тега span отвечающих за значения времени
 // записывается в переменную чтобы сократить работу программы и не вызывать поиск span 3 раза чтобы записать в нужные 
 // переменные отвечающие за время
 var spanArray = document.getElementsByTagName('span'); 
@@ -16,6 +16,7 @@ var minutesDecade = spanArray[0],
 
 var timeSave = document.getElementsByClassName('time_save')[0]; // находим контейнер для записи сохраненных результатов времени
 var stopwotch = document.getElementsByClassName('stopwotch')[0]; // находим контейнер секундомера
+var timeConteiner = document.getElementsByClassName('time_conteiner')[0]; // находим контейнер хранящий ячейки с временем
 
 var buttonReset;
 var buttonSave;
@@ -38,13 +39,6 @@ var iter = 10; // настраиваемая переменная отвещаю
 //если есть в localstorage то загрузить данные и записать их в нужные переменные
 if(localStorage.getItem('time')){
     timeData = JSON.parse(localStorage.getItem('time'));
-
-    console.log(timeData[0]);
-    console.log(timeData[1]);
-    console.log(timeData[2]);
-    console.log(timeData[3]);
-    console.log(timeData[4]);
-    console.log(timeData[5]);
 
     minutesDecadeValue = timeData[0];
     minutesValue = timeData[1];
@@ -135,6 +129,9 @@ function iterationStopwotch(){
                             stopWotchToggle = false;
 
                             setTimeout(stopwotchZero, iter+5);
+
+                            buttonSave.remove(); //удаляем кнопку save
+                            buttonStart.remove(); // удаляем основную кнопку
                         }
 
                         minutesDecade.innerHTML = minutesDecadeValue;
@@ -242,9 +239,25 @@ function funButtonReset(){
 //функция по очистке полей и обнуления данных
 //введена для вызова ее через интервал после нажатия на кнопку reset, из-за временной задерки между нажатием на кнопку и отключением счетчика
 function timeoutMilisecondReset(){
-    //сбрасываем стартовую кнопку
-    buttonStart.setAttribute('data-value', 'start'); //изменяем значение дата атрибута на run
-    buttonStart.innerHTML = 'Start'; // меняем текст кнопки
+
+    if(buttonStart){
+        //сбрасываем стартовую кнопку
+        buttonStart.setAttribute('data-value', 'start'); //изменяем значение дата атрибута на run
+        buttonStart.innerHTML = 'Start'; // меняем текст кнопки
+    }
+    /*
+    else{
+        console.log('создание кнопки старт');
+
+        stopwotch.insertBefore(document.createElement('button'), timeConteiner); //создаем кнопку старта
+        var buttonStart = document.getElementsByTagName('button')[0]; // находим кнопку старта
+        buttonStart.setAttribute('data-value', 'start'); // добавляем ей дата атрибут со значением start
+        buttonStart.innerHTML = 'Start';
+
+        buttonStart.onclick = buttonStartClick;
+    }
+    */
+
 
     //обнуляем переменные отвещающие за значения времени
     minutesDecadeValue = 0;
@@ -280,6 +293,7 @@ function timeoutMilisecondReset(){
     if(localStorage.getItem('state')){
         localStorage.removeItem('state');
     }
+
 }
 
 //функция нажатия на кнопку save
