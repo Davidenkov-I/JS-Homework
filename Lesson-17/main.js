@@ -1,40 +1,41 @@
 
-var buttonStart = document.getElementsByTagName('button')[0]; // находим кнопку старта
+var buttonStart = document.getElementsByTagName('button')[0], // находим кнопку старта
 
-//находим все 6 тега span отвечающих за значения времени
+// находим все 6 тега span отвечающих за значения времени
 // записывается в переменную чтобы сократить работу программы и не вызывать поиск span 3 раза чтобы записать в нужные 
 // переменные отвечающие за время
-var spanArray = document.getElementsByTagName('span'); 
+    spanArray = document.getElementsByTagName('span'),
 
 // переменные для хранения span элементов с текстом времени
-var minutesDecade = spanArray[0],
+    minutesDecade = spanArray[0],
     minutes = spanArray[1],
     secondsDecade = spanArray[2],
     seconds = spanArray[3],
     miliSecondsDecade = spanArray[4],
-    miliSeconds = spanArray[5];
+    miliSeconds = spanArray[5],
 
-var timeSave = document.getElementsByClassName('time_save')[0]; // находим контейнер для записи сохраненных результатов времени
-var stopwotch = document.getElementsByClassName('stopwotch')[0]; // находим контейнер секундомера
-var timeConteiner = document.getElementsByClassName('time_conteiner')[0]; // находим контейнер хранящий ячейки с временем
+    timeSave = document.getElementsByClassName('time_save')[0], // находим контейнер для записи сохраненных результатов времени
+    stopwotch = document.getElementsByClassName('stopwotch')[0], // находим контейнер секундомера
+    timeConteiner = document.getElementsByClassName('time_conteiner')[0], // находим контейнер хранящий ячейки с временем
 
-var buttonReset;
-var buttonSave;
+    buttonReset,
+    buttonSave,
 
 
-var minutesDecadeValue = 0; // переменная для хранения текущего значения десятков минут
-var minutesValue = 0; //переменная для хранения текущего значения минут
-var secondsDecadeValue = 0; //переменная для хранения текущего значения десятков секунд
-var secondsValue = 0; //переменная для хранения текущего значения секунд
-var miliSecondDecadeValue = 0; //переменная для хранения текущего значения десятков милисекунд
-var miliSecondValue = 0; //переменная для хранения текущего значения милисекунд
+    minutesDecadeValue = 0, // переменная для хранения текущего значения десятков минут
+    minutesValue = 0, //переменная для хранения текущего значения минут
+    secondsDecadeValue = 0, //переменная для хранения текущего значения десятков секунд
+    secondsValue = 0, //переменная для хранения текущего значения секунд
+    miliSecondDecadeValue = 0, //переменная для хранения текущего значения десятков милисекунд
+    miliSecondValue = 0, //переменная для хранения текущего значения милисекунд
 
-var arrayMarks = []; // массив для хранения меток
-var timeData = []; // переменная для хранения времени
+    arrayMarks = [], // массив для хранения меток
+    timeData = [], // переменная для хранения времени
 
-var stopWotchToggle = false; // отвечает за работу счетчика секундомера
-var timer; //переменная для запуска setInterval
-var iter = 10; // настраиваемая переменная отвещающая за то каким будет интервал
+    stopWotchToggle = false, // отвечает за работу счетчика секундомера
+    timer, //переменная для запуска setInterval
+    iter = 10; // настраиваемая переменная отвещающая за то каким будет интервал
+
 
 //если есть в localstorage то загрузить данные и записать их в нужные переменные
 if(localStorage.getItem('time')){
@@ -57,25 +58,29 @@ if(localStorage.getItem('time')){
 
 // если в localStorage имеется ключ state то создает кнопки reset и save. Также меняет дата-атрибуты стартовой кнопки
 if(localStorage.getItem('state')){
-    if(JSON.parse(localStorage.getItem('state')) === 'stop'){
-        createStopwotchPage();
-        buttonStart.setAttribute('data-value', 'stop'); //изменяем значение дата атрибута на stop
-        buttonStart.innerHTML = 'Stop'; // меняем текст кнопки
+    switch (JSON.parse(localStorage.getItem('state'))){
+        case 'stop':
+            createStopwotchPage();
+            //buttonStart.setAttribute('data-value', 'stop'); //изменяем значение дата атрибута на stop
+            buttonStart.dataset.value = 'stop';
+            buttonStart.innerHTML = 'Stop'; // меняем текст кнопки
 
-        buttonReset.onclick = funButtonReset;
-        buttonSave.onclick = funButtonSave;
+            buttonReset.onclick = funButtonReset;
+            buttonSave.onclick = funButtonSave;
 
-        stopWotchToggle = true;
-        timer = setInterval(iterationStopwotch, iter);
-    }
+            stopWotchToggle = true;
+            timer = setInterval(iterationStopwotch, iter);
+            break;
 
-    if(JSON.parse(localStorage.getItem('state')) === 'run'){
-        createStopwotchPage();
-        buttonStart.setAttribute('data-value', 'run'); //изменяем значение дата атрибута на run
-        buttonStart.innerHTML = 'Run'; // меняем текст кнопки
+        case 'run':
+            createStopwotchPage();
+            //buttonStart.setAttribute('data-value', 'run'); //изменяем значение дата атрибута на run
+            buttonStart.dataset.value = 'run';
+            buttonStart.innerHTML = 'Run'; // меняем текст кнопки
 
-        buttonReset.onclick = funButtonReset;
-        buttonSave.onclick = funButtonSave;
+            buttonReset.onclick = funButtonReset;
+            buttonSave.onclick = funButtonSave;
+            break;
     }
 }
 
@@ -175,31 +180,33 @@ function stopwotchZero(){
 
 // функция нажатия на кнопку start
 function buttonStartClick(){
-    if(buttonStart.getAttribute('data-value') === 'start'){
-        createStopwotchPage();
-        localStorage.setItem("state", JSON.stringify('stop'));
+    switch(buttonStart.dataset.value){
+        case 'start':        
+            createStopwotchPage();
+            localStorage.setItem('state', JSON.stringify('stop'));
 
-        //запускаем секундомер
-        stopWotchToggle = true;
-        timer = setInterval(iterationStopwotch, iter); 
-    }
-    else if(buttonStart.getAttribute('data-value') === 'stop'){
-        buttonStart.setAttribute('data-value', 'run'); //изменяем значение дата атрибута на run
-        buttonStart.innerHTML = 'Run'; // меняем текст кнопки
-        localStorage.setItem("state", JSON.stringify('run'));
+            //запускаем секундомер
+            stopWotchToggle = true;
+            timer = setInterval(iterationStopwotch, iter); 
+            break;
+        case 'stop':        
+            buttonStart.dataset.value = 'run'; //изменяем значение дата атрибута на run
+            buttonStart.innerHTML = 'Run'; // меняем текст кнопки
+            localStorage.setItem('state', JSON.stringify('run'));
 
-        stopWotchToggle = false; //останавливаем секундомер
+            stopWotchToggle = false; //останавливаем секундомер
 
-        setTimeout(writeLocalstorage, iter+5);
-    }
-    else if(buttonStart.getAttribute('data-value') === 'run'){
-        buttonStart.setAttribute('data-value', 'stop'); //изменяем значение дата атрибута на stop
-        buttonStart.innerHTML = 'Stop'; // меняем текст кнопки
-        localStorage.setItem("state", JSON.stringify('stop'));
+            setTimeout(writeLocalstorage, iter+5);
+            break;
+        case 'run':
+            buttonStart.dataset.value = 'stop'; //изменяем значение дата атрибута на stop
+            buttonStart.innerHTML = 'Stop'; // меняем текст кнопки
+            localStorage.setItem('state', JSON.stringify('stop'));
 
-        //запускаем секундомер
-        stopWotchToggle = true;
-        timer = setInterval(iterationStopwotch, iter); 
+            //запускаем секундомер
+            stopWotchToggle = true;
+            timer = setInterval(iterationStopwotch, iter); 
+            break;
     }
 
     buttonReset.onclick = funButtonReset;
@@ -210,12 +217,12 @@ function buttonStartClick(){
 
 //функция записи в localStorage
 function writeLocalstorage(){
-    localStorage.setItem("time", JSON.stringify(timeData));
+    localStorage.setItem('time', JSON.stringify(timeData));
 }
 
 //функция создания основных кнопок
 function createStopwotchPage(){
-    buttonStart.setAttribute('data-value', 'stop'); //изменяем значение дата атрибута на stop
+    buttonStart.dataset.value = 'stop'; //изменяем значение дата атрибута на stop
     buttonStart.innerHTML = 'Stop'; // меняем текст кнопки
 
     //создаем кнопку reset
@@ -241,7 +248,7 @@ function funButtonReset(){
 function timeoutMilisecondReset(){
 
     //сбрасываем стартовую кнопку
-    buttonStart.setAttribute('data-value', 'start'); //изменяем значение дата атрибута на run
+    buttonStart.dataset.value = 'start'; //изменяем значение дата атрибута на run
     buttonStart.innerHTML = 'Start'; // меняем текст кнопки
 
     buttonStart.style.display = 'block';
@@ -293,5 +300,5 @@ function funButtonSave(){
     arrayMarks.push(newSaveElement.innerHTML);
 
     //сохраняем данные по меткам в localStorage
-    localStorage.setItem("marks", JSON.stringify(arrayMarks));
+    localStorage.setItem('marks', JSON.stringify(arrayMarks));
 }
